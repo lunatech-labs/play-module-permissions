@@ -1,0 +1,11 @@
+play-1.1-secure-permissions-module-1.1 (1.1-1ubuntu1) lucid; urgency=low
+
+  * Upgrade for latest play 1.1
+
+ -- Stephane Epardaud <stephane@epardaud.net>  Thu, 19 Aug 2010 17:37:02 +0200
+
+play1.1-secure-permissions-module-1.0 (1.0-1) unstable; urgency=low
+
+  * Initial release
+
+ -- Stephane Epardaud <stephane@lunatech.com>  Fri, 16 Jul 2010 13:48:22 +0200
