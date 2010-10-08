@@ -6,9 +6,9 @@
 
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
-export DH_COMPAT=3
+#export DH_COMPAT=3
 
-VERSION=1.1
+VERSION=1.2
 PLAY_VERSION=1.1
 APP=play-$(PLAY_VERSION)-secure-permissions-module-$(VERSION)
 MODULE=secure-permissions-$(VERSION)
@@ -47,7 +47,6 @@ install:
 
 # Build architecture-dependent files here.
 binary-arch: build install
-	dh_testversion
 	dh_testdir
 	dh_testroot
 	dh_installdocs

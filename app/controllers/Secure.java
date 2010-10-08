@@ -187,7 +187,7 @@ public class Secure extends Controller {
 
     public static void logout() throws Throwable {
         session.clear();
-        response.setCookie("rememberme", "", 0);
+        response.setCookie("rememberme", "", "0m");
         Security.invoke("onDisconnected");
         flash.success("secure.logout");
         login();

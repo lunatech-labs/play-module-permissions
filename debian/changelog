@@ -1,3 +1,9 @@
+play-1.1-secure-permissions-module-1.2 (1.2-1) maverick; urgency=low
+
+  * Updated for latest Play! 1.1
+
+ -- Stephane Epardaud <stephane@epardaud.fr>  Fri, 08 Oct 2010 12:38:43 +0200
+
 play-1.1-secure-permissions-module-1.1 (1.1-1ubuntu1) lucid; urgency=low
 
   * Upgrade for latest play 1.1
