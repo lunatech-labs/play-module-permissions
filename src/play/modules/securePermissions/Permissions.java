@@ -59,12 +59,23 @@ public class Permissions {
 	}
 
 	static void maybeLoadKnowledgeBase(){
-		String newRulesFileName = Play.configuration.getProperty("secure.rules", RULES_FILE_NAME);
+		String newRulesFileName = Play.configuration.getProperty("secure.rules");
+		boolean defaultUsed = false;
+		if(newRulesFileName == null){
+			newRulesFileName = RULES_FILE_NAME;
+			defaultUsed = true;
+		}
 		VirtualFile rulesFile = Play.getVirtualFile("conf/"+newRulesFileName);
 
-		if(rulesFile == null || !rulesFile.exists())
+		if(rulesFile == null || !rulesFile.exists()){
+			if(defaultUsed){
+				Logger.warn("No permissions file specified and none found: all permissions checks will be denied.");
+				knowledgeBase = null;
+				return;
+			}
+			// throw only if one was specified and is missing
 			throw new RuntimeException("Rules file conf/"+newRulesFileName+" does not exist");
-		
+		}
 		if(Play.mode == Mode.PROD){
 			rulesFileName = newRulesFileName;
 			loadKnowledgeBase(rulesFile.content());
@@ -123,6 +134,11 @@ public class Permissions {
 	public static boolean check(final PermissionCheck check, final String user, final Collection<String> roles) {
 		Logger.debug("%s, user=%s, roles=%s)", check, user, roles);
 
+		if(knowledgeBase == null){
+			Logger.debug("DENIED (no permissions file specified)");
+			return false;
+		}
+		
 		final StatelessKnowledgeSession session = knowledgeBase.newStatelessKnowledgeSession();
 		session.addEventListener(new AgendaLogger());
 
