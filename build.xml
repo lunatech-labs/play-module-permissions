@@ -2,8 +2,9 @@
 
 <project name="secure-permissions-play-module" default="build" basedir=".">
 
-	<property name="version" value="1.1"/>
+	<property name="version" value="1.2.1"/>
 	<property name="dist.dir-1.1" value="play-1.1-secure-permissions-module-${version}"/>
+	<property name="dist.upload.dir-1.1" value="play-1.1-secure-permissions-module-${version}-for-upload"/>
 	<property name="dist.dir-src" value="secure-permissions-play-module-${version}"/>
 
     <path id="project.classpath">
@@ -53,15 +54,22 @@
 		<copy todir="dist/${dist.dir-1.1}/" >
 			<fileset dir="." includes="lib/**"/>
 			<fileset dir="." includes="app/**"/>
-			<fileset dir="." includes="conf/**"/>
+			<fileset dir="." includes="conf/**">
+				<exclude name="conf/permissions.drl"/>
+				<exclude name="conf/application.conf"/>
+			</fileset>
 			<fileset dir="." includes="public/**"/>
 			<fileset file="commands.py"/>
 			<fileset file="COPYING"/>
 			<fileset file="COPYING.LESSER"/>
 			<fileset file="README"/>
 		</copy>
+		<echo file="dist/${dist.dir-1.1}/manifest" message="version=${version}${line.separator}frameworkVersions=1.1${line.separator}"/>
 		<zip destfile="dist/${dist.dir-1.1}.zip">
 			<zipfileset dir="dist/${dist.dir-1.1}" prefix="${dist.dir-1.1}"/>
+		</zip>
+		<zip destfile="dist/${dist.upload.dir-1.1}.zip">
+			<zipfileset dir="dist/${dist.dir-1.1}"/>
 		</zip>
 		<!-- Source distrib -->
 		<mkdir dir="dist/${dist.dir-src}"/>
@@ -69,6 +77,7 @@
 			<fileset dir="." includes="debian/**"/>
 			<fileset dir="." includes="lib/**"/>
 			<fileset dir="." includes="app/**"/>
+			<fileset dir="." includes="test/**"/>
 			<fileset dir="." includes="conf/**"/>
 			<fileset dir="." includes="public/**"/>
 			<fileset dir="." includes="src/**"/>
@@ -81,6 +90,10 @@
 		<zip destfile="dist/${dist.dir-src}.zip">
 			<zipfileset dir="dist/${dist.dir-src}" prefix="${dist.dir-src}"/>
 		</zip>
+	</target>
+	
+	<target name="clean">
+		<delete dir="dist"/>
 	</target>
 
 </project>

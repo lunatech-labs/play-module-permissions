@@ -1,3 +1,11 @@
+play-1.1-secure-permissions-module-1.2 (1.2.1) maverick; urgency=low
+
+  * Added tests
+  * Handle missing permissions file
+  * Implement Security.check with roles()
+
+ -- Stephane Epardaud <stephane@epardaud.fr>  Fri, 04 Mar 2011 13:34:36 +0100
+
 play-1.1-secure-permissions-module-1.2 (1.2-1) maverick; urgency=low
 
   * Updated for latest Play! 1.1

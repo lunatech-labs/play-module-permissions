@@ -1,0 +1,29 @@
+package MyApplicationPermissions;
+
+import play.modules.securePermissions.PermissionCheck;
+import play.modules.securePermissions.Role;
+
+import controllers.SecuredController.Bean;
+
+rule hasUserRole
+when
+  $c: PermissionCheck(action in ("select"))
+  Role(name == "user")
+then
+  $c.grant();
+end
+
+rule dependsOnValue
+when
+  $c: PermissionCheck(target == "ok", action in ("select-value"))
+then
+  $c.grant();
+end
+
+rule dependsOnBeanValue
+when
+  $user : Bean(firstName == "Stef")
+  $c: PermissionCheck(target == $user, action in ("select-value"))
+then
+  $c.grant();
+end

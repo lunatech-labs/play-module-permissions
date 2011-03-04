@@ -8,3 +8,9 @@
 GET			/login			Secure.login
 POST		/login			Secure.authenticate
 GET			/logout			Secure.logout
+
+# for unit tests
+#{if play.Play.configuration.getProperty("secure-permissions-tests-running") == "true"}
+ GET     ${ctx}/public/                                						staticDir:public
+ *       ${ctx}/{controller}/{action}                  						{controller}.{action}
+#{/if}
