@@ -238,7 +238,7 @@ public class Secure extends Controller {
          * @return true if you are allowed to execute this controller method.
          */
         static boolean check(String profile) {
-            return true;
+            return ((Set<String>) invoke("roles")).contains(profile);
         }
 
         /**
