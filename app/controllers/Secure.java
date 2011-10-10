@@ -138,9 +138,14 @@ public class Secure extends Controller {
      * Check permissions whether the current user has the given permission.
      * @throws Throwable 
      */
-    public static boolean checkPermission(Object target, String action) {
+    public static boolean checkPermission(Object target, String[] actions) {
     	final Set<String> roles = (Set<String>) Security.invoke("roles");
-		return Permissions.check(new PermissionCheck(target, action), Security.connected(), roles);
+    	// try any permission
+    	for(String action : actions){
+    		if(Permissions.check(new PermissionCheck(target, action), Security.connected(), roles))
+    			return true;
+    	}
+    	return false;
     }
     
     // ~~~ Login
