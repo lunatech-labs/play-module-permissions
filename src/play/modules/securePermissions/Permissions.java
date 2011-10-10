@@ -132,7 +132,7 @@ public class Permissions {
 	 * @return true if the permission is granted
 	 */
 	public static boolean check(final PermissionCheck check, final String user, final Collection<String> roles) {
-		Logger.debug("%s, user=%s, roles=%s)", check, user, roles);
+		Logger.debug("%s, user=%s, roles=%s", check, user, roles);
 
 		if(knowledgeBase == null){
 			Logger.debug("DENIED (no permissions file specified)");
