@@ -130,7 +130,21 @@ public class Secure extends Controller {
             Object target = Binder.bind(paramsNames[i], method.getParameterTypes()[i], method.getGenericParameterTypes()[i], method.getParameterAnnotations()[i], params, null, method, i + 1);
     		// now check
     		if(!checkPermission(target, check.value()))
-            	Security.invoke("onCheckFailed", check.value());
+            	Security.invoke("onCheckFailed", "permissions");
+    	}
+    	// now check the method
+    	CheckPermission check = method.getAnnotation(CheckPermission.class);
+    	if(check != null){
+    		// check the method permission with no target
+    		if(!checkPermission(null, check.value()))
+    			Security.invoke("onCheckFailed", "permissions");
+    	}
+    	// and finally the controller
+        check = getControllerInheritedAnnotation(CheckPermission.class);
+    	if(check != null){
+    		// check the method permission with no target
+    		if(!checkPermission(null, check.value()))
+    			Security.invoke("onCheckFailed", "permissions");
     	}
     }
 
