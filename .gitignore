@@ -7,3 +7,5 @@ commands.pyc
 .classpath
 .pydevproject
 lib/play-secure-permissions.jar
+test-result
+tmp
