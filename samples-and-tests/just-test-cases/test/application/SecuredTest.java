@@ -17,7 +17,7 @@ public class SecuredTest extends FunctionalTest {
 
 	private void assertNeedsLogin(Response response) {
 		assertStatus(HttpURLConnection.HTTP_MOVED_TEMP, response);
-		assertHeaderEquals("Location", "http://localhost/login", response);
+		assertHeaderEquals("Location", "/login", response);
 	}
 
 	@Test
@@ -101,8 +101,8 @@ public class SecuredTest extends FunctionalTest {
 		Response response = POST("/login?username="+user+"&password=pass");
 		assertStatus(HttpURLConnection.HTTP_MOVED_TEMP, response);
 		if(expectFailure)
-			assertHeaderEquals("Location", "http://localhost/login", response);
+			assertHeaderEquals("Location", "/login", response);
 		else
-			assertHeaderEquals("Location", "http://localhost/", response);
+			assertHeaderEquals("Location", "/", response);
 	}
 }
