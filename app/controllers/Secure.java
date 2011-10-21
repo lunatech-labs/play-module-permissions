@@ -50,6 +50,7 @@ import java.util.Set;
 
 import play.Play;
 import play.data.binding.Binder;
+import play.data.binding.RootParamNode;
 import play.data.validation.Required;
 import play.exceptions.UnexpectedException;
 import play.libs.Crypto;
@@ -127,7 +128,10 @@ public class Secure extends Controller {
     		} else {
     			params.putAll(Scope.Params.current().all());
     		}
-            Object target = Binder.bind(paramsNames[i], method.getParameterTypes()[i], method.getGenericParameterTypes()[i], method.getParameterAnnotations()[i], params, null, method, i + 1);
+    		
+    		RootParamNode parentParamNode = RootParamNode.convert(params);
+            Object target = Binder.bind(parentParamNode, paramsNames[i], method.getParameterTypes()[i], method.getGenericParameterTypes()[i], method.getParameterAnnotations()[i]);
+    		
     		// now check
     		if(!checkPermission(target, check.value()))
             	Security.invoke("onCheckFailed", "permissions");
