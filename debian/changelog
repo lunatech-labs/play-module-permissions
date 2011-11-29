@@ -1,3 +1,9 @@
+play-1.2-secure-permissions-module-1.4 (1.4) oneiric; urgency=low
+
+  * Upgraded for Play 1.2.4
+
+ -- Erik Bakker <erik@lunatech.com>  Mon, 28 Nov 2011 16:16:56 +0100
+
 play-1.1-secure-permissions-module-1.3 (1.3.1) maverick; urgency=low
 
   * Now @CheckPermission takes a list of permissions

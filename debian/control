@@ -1,11 +1,11 @@
-Source: play-1.1-secure-permissions-module-1.3
+Source: play-1.2-secure-permissions-module-1.4
 Section: unknown
 Priority: extra
-Maintainer: Stephane Epardaud <stephane@lunatech.com>
+Maintainer: Erik Bakker <erik@lunatech.com>
 Build-Depends: debhelper (>= 7), play-1.1
 Standards-Version: 3.8.3
 
-Package: play-1.1-secure-permissions-module-1.3
+Package: play-1.2-secure-permissions-module-1.4
 Architecture: all
 Depends: ${misc:Depends}
 Description: Secure module with drools

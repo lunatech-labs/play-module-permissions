@@ -8,8 +8,8 @@
 #export DH_VERBOSE=1
 #export DH_COMPAT=3
 
-VERSION=1.3
-PLAY_VERSION=1.1
+VERSION=1.4
+PLAY_VERSION=1.2
 APP=play-$(PLAY_VERSION)-secure-permissions-module-$(VERSION)
 MODULE=secure-permissions-$(VERSION)
 
@@ -26,7 +26,7 @@ build: configure-stamp build-stamp
 build-stamp:
 	dh_testdir
 	dh_clean
-	/bin/echo -e '\n\n' | play-1.1 build-module
+	/bin/echo -e '\n\n' | play-$(PLAY_VERSION) build-module
 	touch build-stamp
 
 clean:
@@ -42,7 +42,7 @@ install:
 	dh_clean -k
 	dh_installdirs
 	install -d $(DEB_PATH)$(INSTALL_PATH)
-	rsync -r --exclude .svn app commands.* conf dist lib public src $(DEB_PATH)$(INSTALL_PATH)
+	rsync -r --exclude .svn app commands.* dist lib public src $(DEB_PATH)$(INSTALL_PATH)
 
 
 # Build architecture-dependent files here.
